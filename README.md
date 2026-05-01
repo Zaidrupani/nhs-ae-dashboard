@@ -33,9 +33,9 @@ This dashboard analyses A&E attendance and 4-hour breach rate data across 232 NH
 | MySQL | Database setup, data loading, analytical queries |
 | Power BI | Interactive dashboard and visualisation |
 
----
-
 ## 📁 Repository Structure
+
+```
 nhs-ae-dashboard/
 │
 ├── sql/
@@ -53,9 +53,7 @@ nhs-ae-dashboard/
 │
 ├── NHS_AE_Performance_Dashboard.pbix
 └── README.md
-
----
-
+```
 ## 📸 Dashboard Preview
 
 ### Page 1 — National Overview
