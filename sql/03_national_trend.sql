@@ -1,0 +1,9 @@
+SELECT
+    month_date,
+    SUM(att_type1) AS total_attendances,
+    SUM(over4hr_type1) AS total_breaches,
+    ROUND(SUM(over4hr_type1) * 100.0 / NULLIF(SUM(att_type1), 0), 2) AS national_breach_rate
+FROM ae_performance
+WHERE att_type1 > 0
+GROUP BY month_date
+ORDER BY month_date;
