@@ -1,5 +1,6 @@
-# nhs-ae-dashboard
-NHS A&E Performance Analysis Dashboard — SQL, Python, Power BI | 4 Years of NHS England Data
+# 🏥 NHS A&E Performance Analysis Dashboard
+
+SQL | Python | Power BI | 4 Years of NHS England Data
 
 # 🏥 NHS A&E Performance Dashboard
 
@@ -8,6 +9,11 @@ An end-to-end data analytics project analysing 4 years of NHS England A&E perfor
 ## 📊 Project Overview
 
 This dashboard analyses A&E attendance and 4-hour breach rate data across 232 NHS trusts in England, identifying underperforming trusts, seasonal demand patterns, and year-on-year performance trends.
+
+## 📏 Key Metrics
+
+- **Breach Rate (%)** = Patients waiting over 4 hours ÷ Total A&E attendances  
+- **YoY Change (%)** = Year-on-year percentage change in breach rate  
 
 **Business Question:**
 > Which NHS trusts are underperforming against A&E wait time targets, and what operational patterns (seasonality, regional variation, demand pressure) explain these breaches?
@@ -51,9 +57,11 @@ This model captures underlying patterns in the data and provides a forward-looki
 
 Python-based analysis was used to validate trends and seasonal patterns observed in the Power BI dashboard, ensuring consistency and analytical accuracy.
 
+These analyses complement the dashboard by providing deeper validation and forward-looking insights into A&E performance trends.
+
 ## 📈 Business Impact
 
-This analysis highlights operational inefficiencies across NHS trusts and supports data driven decision-making to improve A&E performance, reduce waiting times, and optimise resource allocation during peak demand periods.
+This project demonstrates an end-to-end analytics workflow from raw data processing to insight generation and stakeholder-ready visualisation.
 
 ## 🏥 Real-World Application
 
@@ -83,6 +91,9 @@ nhs-ae-dashboard/
 │   ├── 04_seasonal_analysis.sql
 │   ├── 05_yoy_deterioration.sql
 │   └── 06_critical_12hr_waits.sql
+|
+├── notebooks/
+│   └── analysis.ipynb
 │
 ├── screenshots/
 │   ├── page1_national_overview.png
@@ -103,7 +114,7 @@ nhs-ae-dashboard/
 ### Page 3 — Seasonal Patterns
 ![Seasonal Patterns](screenshots/page3_seasonal_patterns.png)
 
-### 🐍 Python Analysis (Supporting)
+### 🐍 Python Analysis (Supporting Insights)
 
 #### Forecasted A&E Breach Rate
 ![Forecast](screenshots/python_forecast.png)
