@@ -73,9 +73,9 @@ This dashboard can be used by NHS managers and healthcare analysts to:
 
 | Tool | Purpose |
 |---|---|
-| Python (pandas) | Data cleaning, transformation, and combining 48 monthly datasets |
-| MySQL | Data storage, querying, and KPI calculations |
-| Power BI | Interactive dashboard design and visualisation |
+| Python (pandas, statsmodels) | Data cleaning, transformation, time-series analysis, and forecasting |
+| MySQL | Data storage, aggregation, and KPI calculations across NHS trusts |
+| Power BI | Interactive dashboard development and visualisation of trends, regional performance, and trust-level insights |
 
 ## 📁 Repository Structure
 
