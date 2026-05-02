@@ -106,7 +106,7 @@ nhs-ae-dashboard/
 ### 🐍 Python Analysis (Supporting)
 
 #### Forecasted A&E Breach Rate
-![Forecast](screenshots/NHS AE Breach Rate 6 Month Forecast.png)
+![Forecast](screenshots/python_forecast.png)
 
 #### Seasonal Pattern Analysis
 ![Seasonality](screenshots/Average AE Breach Rate by Month.png)
