@@ -2,9 +2,7 @@
 
 SQL | Python | Power BI | 4 Years of NHS England Data
 
-# 🏥 NHS A&E Performance Dashboard
-
-An end-to-end data analytics project analysing 4 years of NHS England A&E performance data (April 2022 – March 2026) to identify key drivers of 4 hour target breaches and highlight operational inefficiencies across hospital trusts.
+An end-to-end data analytics project analysing 4 years of NHS England A&E performance data (April 2022 – March 2026) to identify key drivers of 4-hour target breaches and highlight operational inefficiencies across hospital trusts.
 
 ## 📊 Project Overview
 
