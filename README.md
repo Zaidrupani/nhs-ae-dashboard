@@ -103,9 +103,15 @@ nhs-ae-dashboard/
 ### Page 3 — Seasonal Patterns
 ![Seasonal Patterns](screenshots/page3_seasonal_patterns.png)
 
----
+### 🐍 Python Analysis (Supporting)
 
-## 💡 Recommendations
+#### Forecasted A&E Breach Rate
+![Forecast](screenshots/python_forecast.png)
+
+#### Seasonal Pattern Analysis
+![Seasonality](screenshots/python_seasonality.png)
+
+---
 
 ## 💡 Recommendations
 
@@ -128,8 +134,6 @@ Official NHS England A&E Attendances and Emergency Admissions statistics:
 🔗 https://www.england.nhs.uk/statistics/statistical-work-areas/ae-waiting-times-and-activity/
 
 ---
-
-## 👤 Author
 
 ## 👤 Author
 
