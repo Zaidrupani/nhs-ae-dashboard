@@ -91,7 +91,7 @@ nhs-ae-dashboard/
 │   └── 06_critical_12hr_waits.sql
 |
 ├── notebooks/
-│   └── analysis.ipynb
+│   └── analysis.py
 │
 ├── screenshots/
 │   ├── page1_national_overview.png
