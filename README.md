@@ -109,7 +109,7 @@ nhs-ae-dashboard/
 ![Forecast](screenshots/python_forecast.png)
 
 #### Seasonal Pattern Analysis
-![Seasonality](screenshots/Average AE Breach Rate by Month.png)
+![Seasonality](screenshots/python_seasonality.png)
 
 ---
 
