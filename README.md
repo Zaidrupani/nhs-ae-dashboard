@@ -25,6 +25,32 @@ This dashboard analyses A&E attendance and 4-hour breach rate data across 232 NH
 
 ---
 
+## 🐍 Python Analysis
+
+Python was used for data cleaning, transformation, and time-series analysis to support and validate insights from the dashboard.
+
+### Key Analysis Performed
+
+- Calculated A&E breach rate from raw attendance data  
+- Analysed monthly trends and rolling averages  
+- Identified strong seasonal patterns in A&E performance  
+- Built a simple forecasting model to estimate future breach rates  
+
+### Insights from Python Analysis
+
+- Breach rates show a clear seasonal pattern, peaking during winter months (Dec–Jan)  
+- Trend analysis indicates a gradual increase followed by slight improvement in 2025  
+- Forecast suggests breach rates are likely to stabilise around ~40%, with seasonal spikes expected  
+
+
+## 🔮 Forecasting Approach
+
+A time-series forecasting model (Exponential Smoothing) was applied to estimate future A&E breach rates based on historical trends.
+
+This model captures underlying patterns in the data and provides a forward-looking view of A&E performance, particularly useful for anticipating seasonal pressure.
+
+Python-based analysis was used to validate trends and seasonal patterns observed in the Power BI dashboard, ensuring consistency and analytical accuracy.
+
 ## 📈 Business Impact
 
 This analysis highlights operational inefficiencies across NHS trusts and supports data driven decision-making to improve A&E performance, reduce waiting times, and optimise resource allocation during peak demand periods.
@@ -89,6 +115,12 @@ nhs-ae-dashboard/
 4. **Sustain improvement strategies** — replicate 2025 interventions that reduced national breach rate by ~1.6%  
 
 ---
+
+## ⚠️ Limitations
+
+- Analysis is based on aggregated monthly data (no patient-level granularity)  
+- External factors such as staffing levels and local policies are not included  
+- Forecasting is based on historical trends and does not account for unexpected system changes  
 
 ## 📂 Data Source
 
