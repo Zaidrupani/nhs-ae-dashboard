@@ -126,12 +126,12 @@ National KPIs, regional comparison, distribution of trust breach rates, and dema
 ### Page 2 — Trust Performance
 Best and worst performers, largest year-on-year deteriorations, and a drill-down showing any selected trust's full monthly history against the national average.
 
-![Trust Performance](screenshots/page2_trust_performance.png)
+![Trust Performance](screenshots/page2_trust_comparison.png)
 
 ### Page 3 — Seasonal & Operational Pressure
 Seasonal breach patterns alongside bed capacity indicators, emergency admissions trend, and the twelve-month forecast.
 
-![Seasonal and Operational Pressure](screenshots/page3_seasonal_operational.png)
+![Seasonal and Operational Pressure](screenshots/page3_seasonal_patterns.png)
 
 ---
 
