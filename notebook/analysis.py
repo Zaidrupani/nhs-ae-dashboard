@@ -209,3 +209,123 @@ print("MOST DETERIORATED:")
 print(most_deteriorated[['trust', 'rate_2024', 'rate_2025', 'change']].to_string(index=False))
 print("\nMOST IMPROVED:")
 print(most_improved[['trust', 'rate_2024', 'rate_2025', 'change']].to_string(index=False))
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.ticker as mtick
+
+# Load data
+df = pd.read_csv(r"C:\Users\zaidr\OneDrive\Desktop\ae_master.csv", encoding='latin1')
+df['month_date'] = pd.to_datetime(df['month_date'])
+df['breach_rate'] = (df['over4hr_type1'] / df['att_type1'].replace(0, pd.NA)) * 100
+df = df.dropna(subset=['breach_rate'])
+df = df.sort_values('month_date')
+df['year'] = df['month_date'].dt.year
+
+# YoY Analysis
+yoy = df.groupby(['org_name', 'year'])['breach_rate'].mean().reset_index()
+yoy_pivot = yoy.pivot(index='org_name', columns='year', values='breach_rate')
+yoy_pivot = yoy_pivot[[2024, 2025]].dropna()
+yoy_pivot['change'] = pd.to_numeric(yoy_pivot[2025] - yoy_pivot[2024], errors='coerce')
+yoy_pivot = yoy_pivot.reset_index()
+yoy_pivot.columns = ['trust', 'rate_2024', 'rate_2025', 'change']
+yoy_pivot = yoy_pivot.dropna()
+
+most_deteriorated = yoy_pivot.nlargest(10, 'change')
+most_improved = yoy_pivot.nsmallest(10, 'change')
+
+# Plot
+plt.style.use('dark_background')
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
+
+bars1 = ax1.barh(most_deteriorated['trust'].str[:40], most_deteriorated['change'],
+                  color='#DA291C', edgecolor='none')
+for bar, val in zip(bars1, most_deteriorated['change']):
+    ax1.text(bar.get_width() + 0.1, bar.get_y() + bar.get_height()/2,
+             f'+{val:.1f}%', va='center', fontsize=9, color='white')
+ax1.set_title('Top 10 Most Deteriorated (2024→2025)', fontsize=12, fontweight='bold')
+ax1.set_xlabel('Change in Breach Rate %', fontsize=10)
+ax1.grid(True, alpha=0.2, axis='x')
+
+bars2 = ax2.barh(most_improved['trust'].str[:40], most_improved['change'],
+                  color='#00843D', edgecolor='none')
+for bar, val in zip(bars2, most_improved['change']):
+    ax2.text(bar.get_width() - 0.1, bar.get_y() + bar.get_height()/2,
+             f'{val:.1f}%', va='center', fontsize=9, color='white', ha='right')
+ax2.set_title('Top 10 Most Improved (2024→2025)', fontsize=12, fontweight='bold')
+ax2.set_xlabel('Change in Breach Rate %', fontsize=10)
+ax2.grid(True, alpha=0.2, axis='x')
+
+plt.suptitle('Year on Year Trust Performance Change (2024 vs 2025)',
+             fontsize=14, fontweight='bold')
+plt.tight_layout()
+plt.tight_layout()
+plt.savefig(r"C:\Users\zaidr\OneDrive\Desktop\nhs-ae-dashboard\screenshots\python_yoy.png",
+            dpi=150, bbox_inches='tight')
+plt.show()
+
+print("MOST DETERIORATED:")
+print(most_deteriorated[['trust', 'rate_2024', 'rate_2025', 'change']].to_string(index=False))
+print("\nMOST IMPROVED:")
+print(most_improved[['trust', 'rate_2024', 'rate_2025', 'change']].to_string(index=False))
+
+
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
+# National monthly average
+monthly = df.groupby('month_date')['breach_rate'].mean().reset_index()
+monthly = monthly.sort_values('month_date')
+
+# Force numeric and drop nulls
+monthly['breach_rate'] = pd.to_numeric(monthly['breach_rate'], errors='coerce')
+monthly = monthly.dropna(subset=['breach_rate'])
+
+monthly.set_index('month_date', inplace=True)
+monthly.index = pd.DatetimeIndex(monthly.index).to_period('M').to_timestamp()
+
+# Fit model
+model = ExponentialSmoothing(
+    monthly['breach_rate'],
+    trend='add',
+    seasonal='add',
+    seasonal_periods=12
+)
+fit = model.fit()
+
+# Forecast 6 months ahead
+forecast = fit.forecast(6)
+forecast_index = pd.date_range(start=monthly.index[-1] + pd.DateOffset(months=1), periods=6, freq='MS')
+forecast_series = pd.Series(forecast.values, index=forecast_index)
+
+# Plot
+fig, ax = plt.subplots(figsize=(14, 5))
+
+ax.plot(monthly.index, monthly['breach_rate'],
+        color='#00A9CE', linewidth=2, label='Historical Breach Rate')
+ax.plot(forecast_series.index, forecast_series.values,
+        color='#FFB81C', linewidth=2, linestyle='--', label='6-Month Forecast')
+ax.axhline(y=5, color='#00843D', linewidth=1.5,
+           linestyle='--', label='NHS Target (5%)')
+ax.fill_between(forecast_series.index,
+                forecast_series.values * 0.95,
+                forecast_series.values * 1.05,
+                alpha=0.2, color='#FFB81C', label='Forecast Confidence Band')
+
+ax.set_title('NHS A&E Breach Rate Forecast (Next 6 Months)',
+             fontsize=14, fontweight='bold')
+ax.set_xlabel('Month', fontsize=11)
+ax.set_ylabel('Breach Rate %', fontsize=11)
+ax.yaxis.set_major_formatter(mtick.PercentFormatter())
+ax.legend(loc='upper left')
+ax.grid(True, alpha=0.2)
+
+plt.tight_layout()
+plt.savefig(r"C:\Users\zaidr\OneDrive\Desktop\nhs-ae-dashboard\screenshots\python_forecast.png",
+            dpi=150, bbox_inches='tight')
+plt.show()
+
+print("6-Month Forecast:")
+for date, val in zip(forecast_index, forecast_series.values):
+    print(f"{date.strftime('%b %Y')}: {val:.1f}%")
